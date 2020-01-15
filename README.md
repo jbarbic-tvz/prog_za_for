@@ -1,6 +1,8 @@
 # Aplikacija za testiranja sigurnosti embedded uređaja
 Programiranje za forenziku, projekt.
 
+**TODO** Moramo se dogovoriti kako cemo nazvati projekt
+
 ## Struktura generalno
 
 ```shell
