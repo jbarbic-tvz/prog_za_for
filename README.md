@@ -28,8 +28,8 @@ sub_script.py arg1 arg2
 
 Oba argumenta su u string formatu
 
-arg1 - da li kod pokretanja radi ili ne radi report file, stanja su: **[doreport|noreport]**
-arg2 - kako se zove report file (npr. report_port_scan.txt)
+ - *arg1* - da li kod pokretanja radi ili ne radi report file, stanja su: **[doreport|noreport]**
+ - *arg2* - kako se zove report file (npr. report_port_scan.txt)
 
 
 Primjer poziva sa argumentima:
