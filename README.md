@@ -1,4 +1,4 @@
-# prog_za_for
+# Aplikacija za testiranja sigurnosti embedded uređaja
 Programiranje za forenziku, projekt.
 
 ## Struktura generalno
