@@ -1,0 +1,78 @@
+import socket
+import threading
+import queue
+
+from pip._vendor.distlib.compat import raw_input
+
+from datetime import datetime
+
+target = (raw_input("Target IP address/hostname: "))
+minPort= int(raw_input("Port range - min: "))
+maxPort = int(raw_input("Port range - max: "))
+threads = int(raw_input("threads: "))
+time1 = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+
+print_lock = threading.Lock()
+q = queue.Queue()
+
+
+def portscan(port):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    try:
+           con = s.connect((target, port))
+           with print_lock:
+            if port == (20 or 21):
+                print("[*] Port", port, "/ftp", " is open")
+            elif port == 22:
+                print("[*] Port", port, "/ssh", " is open")
+            elif port == 23:
+                print("[*] Port", port, "/telnet", " is open")
+            elif port == 25:
+                print("[*] Port", port, "/smtp", " is open")
+            elif port == 53:
+                print("[*] Port", port, "/dns", " is open")
+            elif port == 67:
+                print("[*] Port", port, "/dhcp-server", " is open")
+            elif port == 68:
+                print("[*] Port", port, "/dhcp-client", " is open")
+            elif port == 69:
+                print("[*] Port", port, "/tftp", " is open")
+            elif port == (80 or 8080):
+                print("[*] Port", port, "/http", " is open")
+            elif port == 110:
+                print("[*] Port", port, "/pop3", " is open")
+            elif port == 161:
+                print("[*] Port", port, "/snmp", " is open")
+            elif port == 443:
+                print("[*] Port", port, "/https", " is open")
+            elif port == 3306:
+                print("[*] Port", port, "/mysql", " is open")
+            else:
+                 print("[*] Port", port, " is open")
+                 con.close()
+    except:
+           with print_lock:
+            return
+
+
+print ("="*45)
+print ("Scanning started in: ",time1 )
+print ("="*45)
+
+def threader():
+	while True:
+		worker = q.get()
+		portscan(worker)
+		q.task_done
+
+for x in range(threads):
+	t = threading.Thread(target=threader)
+	t.daemon = True
+	t.start()
+
+for worker in range(minPort,maxPort):
+	q.put(worker)
+
+q.join()
