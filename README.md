@@ -20,24 +20,25 @@ tester.log
 
 ## Sub skripta pravila
 
-Svaki sub skripta prima 2 argumenta arg1 i arg2
+Svaki sub skripta prima 3 argumenta arg1, arg2 i arg3
 
 Generalno:
 
-```shell
-sub_script.py arg1 arg2
+```python
+import sub_script
+sub_script.sub_function(arg1, arg2, arg3)
 ```
 
 Oba argumenta su u string formatu
 
  - *arg1* - da li kod pokretanja radi ili ne radi report file, stanja su: **[doreport|noreport]**
  - *arg2* - kako se zove report file (npr. report_port_scan.txt)
-
+ - *arg3* - target IP
 
 Primjer poziva sa argumentima:
 
 ```shell
-port_scan.py doreport report_port_scan.txt
+port_scan.py doreport report_port_scan.txt 192.168.1.71
 ```
 
 ## Report datoteka
