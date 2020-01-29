@@ -6,13 +6,21 @@ from pip._vendor.distlib.compat import raw_input
 
 from datetime import datetime
 
-target = (raw_input("Target IP address/hostname: "))
+target = raw_input("Target IP address/hostname: ")
 minPort= int(raw_input("Port range - min: "))
 maxPort = int(raw_input("Port range - max: "))
 threads = int(raw_input("threads: "))
 time1 = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+openports=[]
 
-
+'''fileName = raw_input("Input a filename you want me to dump the results to (or - to use standard output) (just hit return to default) ")
+if (fileName == "-"): #standard output
+    for line in openports:
+         print(line[0] + " " )
+elif (fileName == "" or fileName == "\n"):  #defaultname
+    listDump(target + ".txt", openports)
+#else:
+    #listDump(fileName, data, timeTaken) #filename'''
 print_lock = threading.Lock()
 q = queue.Queue()
 
@@ -24,37 +32,52 @@ def portscan(port):
            con = s.connect((target, port))
            with print_lock:
             if port == (20 or 21):
+                openports.append(port)
                 print("[*] Port", port, "/ftp", " is open")
             elif port == 22:
+                openports.append(port)
                 print("[*] Port", port, "/ssh", " is open")
             elif port == 23:
+                openports.append(port)
                 print("[*] Port", port, "/telnet", " is open")
             elif port == 25:
+                openports.append(port)
                 print("[*] Port", port, "/smtp", " is open")
             elif port == 53:
+                openports.append(port)
                 print("[*] Port", port, "/dns", " is open")
             elif port == 67:
+                openports.append(port)
                 print("[*] Port", port, "/dhcp-server", " is open")
             elif port == 68:
+                openports.append(port)
                 print("[*] Port", port, "/dhcp-client", " is open")
             elif port == 69:
+                openports.append(port)
                 print("[*] Port", port, "/tftp", " is open")
             elif port == (80 or 8080):
+                openports.append(port)
                 print("[*] Port", port, "/http", " is open")
             elif port == 110:
+                openports.append(port)
                 print("[*] Port", port, "/pop3", " is open")
             elif port == 161:
+                openports.append(port)
                 print("[*] Port", port, "/snmp", " is open")
             elif port == 443:
+                openports.append(port)
                 print("[*] Port", port, "/https", " is open")
             elif port == 3306:
+                openports.append(port)
                 print("[*] Port", port, "/mysql", " is open")
             else:
+                 openports.append(port)
                  print("[*] Port", port, " is open")
-                 con.close()
+
+            con.close()
     except:
-           with print_lock:
-            return
+           pass
+
 
 
 print ("="*45)
@@ -76,3 +99,4 @@ for worker in range(minPort,maxPort):
 	q.put(worker)
 
 q.join()
+print(openports)
