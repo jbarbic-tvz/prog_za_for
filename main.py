@@ -7,6 +7,7 @@ from pathlib import Path
 
 # tools
 import get_os
+import get_service
 
 def final_report(path_dest):
     full_report="full_report.txt"
@@ -38,7 +39,7 @@ def main():
     subs = {}
     subs["1"]="Scan ports"
     subs["2"]="Get OS version"
-    subs["3"]="do stuf 3"
+    subs["3"]="Get services"
     subs["4"]="Create report"
     subs["5"]="Delete reports"
     subs["6"]="Print current configuration"
@@ -60,7 +61,8 @@ def main():
             print ("Geting OS version")
             get_os.nmap_scan(report_status,"report_get_os.txt",target_address)
         elif (selection == 3):
-            print("do 3")
+            print("Services scan")
+            get_service.nmap_scan(report_status, "report_get_service.txt", target_address)
         elif (selection == 4):
             print("Creating full report...")
             final_report(final_report_path)
@@ -73,10 +75,10 @@ def main():
             print("Target address: " + target_address)
         elif (selection == 7):
             print("Please set report output (default doreport)")
-            report_status=input("Set [doreport | noreport]: ")
+            report_status=str(input("Set [doreport | noreport]: "))
         elif (selection == 8):
             print("Please set target IP (default 192.168.1.1)")
-            target_address=input("Set target IP: ")
+            target_address=str(input("Set target IP: "))
         elif (selection == 9):
             break
         else:
