@@ -1,18 +1,39 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 import operator
+from pathlib import Path
 
 # tools
 import get_os
 
-def final_report():
+def final_report(path_dest):
+    full_report="full_report.txt"
     print("Do final report from sub reports...")
+
+    # delete old final report
+    os.system("rm full_rport.txt")
+
+    # iterate over reports
+    pathlist = Path("/home/josip//workbench/workspace-py/prog_za_for/").glob("report*")
+    for path in pathlist:
+        # because path is object not string
+        path_str = str(path)
+        print(path_str)
+        file_rd = open(path_str, "r")
+        read_from=file_rd.read()
+        print(read_from)
+        print("Writing report file to: " + full_report)
+        fil_d = open(full_report, "a")
+        fil_d.write(read_from)
+        fil_d.close()
 
 def main():
     # default configuration
     report_status="doreport"
     target_address="192.168.1.1"
+    final_report_path="report_full.txt"
     # circular menu
     subs = {}
     subs["1"]="Scan ports"
@@ -41,9 +62,11 @@ def main():
         elif (selection == 3):
             print("do 3")
         elif (selection == 4):
-            print("Creating report")
+            print("Creating full report...")
+            final_report(final_report_path)
         elif (selection == 5):
             print("Deleting reports")
+            os.system("rm repor*")
         elif (selection == 6):
             print("Current configuration:")
             print("Report output: " + report_status)

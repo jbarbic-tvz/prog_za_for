@@ -1,8 +1,6 @@
 # Aplikacija za testiranja sigurnosti embedded uređaja
 Programiranje za forenziku, projekt.
 
-**TODO** Moramo se dogovoriti kako cemo nazvati projekt
-
 ## Struktura generalno
 
 ```shell
@@ -22,7 +20,7 @@ tester.log
 
 Svaki sub skripta prima 3 argumenta arg1, arg2 i arg3
 
-Generalno:
+Poziv funkcije generalno:
 
 ```python
 import sub_script
@@ -35,10 +33,10 @@ Oba argumenta su u string formatu
  - *arg2* - kako se zove report file (npr. report_port_scan.txt)
  - *arg3* - target IP
 
-Primjer poziva sa argumentima:
+Primjer poziva glavne funkcije:
 
 ```shell
-port_scan.py doreport report_port_scan.txt 192.168.1.71
+sudo ./main.py
 ```
 
 ## Report datoteka
