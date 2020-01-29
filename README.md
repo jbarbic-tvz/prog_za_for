@@ -46,12 +46,26 @@ Svaka podskripta generira `.txt` UTF-8 report koji ce poslje jedna funkcija obje
 Primjer generiranog report filea:
 
 ```report_port_scan.txt
----------------
- Scanned ports
----------------
-22/tcp ssh
-443/tcp
-5123/udp
+
+Target IP address/hostname: 91.214.105.2
+Port range - min: 1
+Port range - max: 2000
+threads: 200
+=============================================
+Scanning started in:  2020-01-29 10:29:45
+=============================================
+[*] Port 22 /ssh  is open
+[*] Port 80 /http  is open
+[*] Port 256  is open
+[*] Port 259  is open
+[*] Port 257  is open
+[*] Port 262  is open
+[*] Port 264  is open
+[*] Port 443 /https  is open
+[*] Port 500  is open
+[*] Port 900  is open
+[*] Port 1720  is open
+
 ```
 
 **NAPOMENA** Samo se ubaci neko zaglavlje u `.txt` a ostalo se napravi da se ispis iz neke komande npr. `nmap` redirekta u report file
