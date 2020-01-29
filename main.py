@@ -54,8 +54,8 @@ def main():
 
         selection=input("Select from listed:")
         if (selection == 1):
-            print("Prot scan")
-            os.system("./port_scan.py arg1 arg2")
+            print("Port scan")
+            os.system("./portscan.py arg1 arg2")
         elif (selection == 2):
             print ("Geting OS version")
             get_os.nmap_scan(report_status,"report_get_os.txt",target_address)
