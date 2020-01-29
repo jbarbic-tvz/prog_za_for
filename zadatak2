@@ -1,0 +1,30 @@
+import os
+
+
+def findfiles():
+    files = [file for file in os.listdir() if file.endswith('.txt')]
+    return files
+
+
+def texttofind():
+    i = input()
+    return i
+
+
+def xfind(texttofind):
+    map = findfiles()
+    for name in map:
+        with open(name, 'r') as myfile:
+            lines = myfile.read().split("\n")
+        for i, line in enumerate(lines):
+            if texttofind in line:   #if counter=0 doda text , ako je counter veci ne doda
+                save = [
+                    name + " --> " + " \"{}\" found in line {}: ".format(texttofind, i + 1) + line.replace(texttofind,
+                                                                                                           texttofind.upper())]
+                for x in save:
+                    print(x)
+    return texttofind
+
+
+xfind('network')
+# few words from texts:network,web,penetration testing,internal,external,application
